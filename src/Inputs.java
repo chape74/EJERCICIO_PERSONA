@@ -1,10 +1,17 @@
-import java.util.Locale;
+
 import java.util.Scanner;
 
 public class Inputs {
 
     public static String askString(){
         return new Scanner(System.in).nextLine();
+    }
+
+    public static Sexo askSexo(){
+        String check = new Scanner(System.in).nextLine().toUpperCase();
+        if (!check.equals("HOMBRE") && !check.equals("MUJER")) check = "NO";
+
+        return Sexo.valueOf(check);
     }
 
     public static double askDouble(){

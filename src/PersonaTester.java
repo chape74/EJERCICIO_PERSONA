@@ -1,13 +1,14 @@
 public class PersonaTester {
     public static void main(String[] args) {
 
-        String nombre, apellidos, dni, sexo;
+        String nombre, apellidos, dni;
         int edad;
         double peso, altura;
-        Persona[] persona = new Persona[6];
+        Sexo sexo;
+        Persona[] persona = new Persona[1];
 
         for (int i = 0; i < persona.length; i++) {
-            System.out.println("Persona numero "+(i+1)+", tienes DNI?:");
+            System.out.println("Persona numero " + (i + 1) + ", tienes DNI?:");
             boolean tieneDNI = Inputs.askBoolean();
             System.out.println("Dime tu nombre:");
             nombre = Inputs.askString();
@@ -19,7 +20,7 @@ public class PersonaTester {
                 System.out.println("Dime tu altura:");
                 altura = Inputs.askDouble();
                 System.out.println("Dime tu sexo:");
-                sexo = Inputs.askString();
+                sexo = Inputs.askSexo();
                 System.out.println("Dime tu peso:");
                 peso = Inputs.askDouble();
                 System.out.println("Dime tu DNI:");
@@ -29,10 +30,10 @@ public class PersonaTester {
                 persona[i] = new Persona(nombre, apellidos, edad);
             }
         }
-        boolean aa;
+
         for (Persona value : persona) {
             System.out.println(value);
-            switch (value.calcularIMC()){
+            switch (value.calcularIMC()) {
                 case -1:
                     System.out.println("Tienes peso bajo.");
                     break;
@@ -47,8 +48,11 @@ public class PersonaTester {
                     break;
             }
 
-            aa = value.esMayorDeEdad();
-            aa ? System.out.println("es mayor de edad") : System.out.println("es menor de edad");
+            if (value.esMayorDeEdad()) {
+                System.out.println("es mayor de edad");
+            } else {
+                System.out.println("es menor de edad");
+            }
 
             System.out.println();
         }

@@ -1,10 +1,11 @@
 public class Persona {
 
-    private String nombre,apellidos,DNI,sexo;
-    private int edad;
-    private double peso,altura;
+    private final String nombre,apellidos,DNI;
+    private final int edad;
+    private final double peso,altura;
+    private final Sexo sexo;
 
-    public Persona(String nombre, String apellidos, int edad, String sexo, double peso, double altura, String DNI) {
+    public Persona(String nombre, String apellidos, int edad, Sexo sexo, double peso, double altura, String DNI) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
@@ -18,7 +19,7 @@ public class Persona {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.edad = edad;
-        this.sexo = "No";
+        this.sexo = Sexo.NO;
         this.peso = 0;
         this.altura = 0;
         this.DNI = this.generaDNI();
@@ -29,20 +30,16 @@ public class Persona {
         double imc = this.peso / (this.altura * this.altura);
         if (imc < 18.5) {
             return -1;
-        } else if (imc >= 18.5 && imc <= 24.99) {
+        } else if (imc > 18.5 && imc < 25) {
             return 0;
-        } else if (imc >= 25 && imc <= 29.99) {
+        } else if (imc >= 25 && imc < 30) {
             return 1;
         } else {
             return 2;
         }
     }
     public boolean esMayorDeEdad() {
-        if (this.edad >= 18) {
-            return true;
-        } else {
-            return false;
-        }
+        return this.edad >= 18;
     }
     @Override
     public String toString() {
